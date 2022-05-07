@@ -3,7 +3,8 @@ import React, { useState } from  'react';
 const ColorForm = (props) => {
     // These are state variables, they always go to the top of the component!
     const [boxGen, setBoxGen] = useState([]);
-    const [textColor, setTextColor] = useState("")
+    const [textColor, setTextColor] = useState("");
+    const [boxSize,setBoxSize]=useState();
 
     const createBox = (e) => {
         // add, prevent default behavior first thing.
@@ -13,6 +14,7 @@ const ColorForm = (props) => {
         console.log(newBoxGen)
         newBoxGen.push(textColor)
         setBoxGen(newBoxGen)
+        setTextColor('');
     };
 
     return(
@@ -20,7 +22,11 @@ const ColorForm = (props) => {
         <form onSubmit={ createBox }>
             <div>
                 <label>Color: </label>
-                <input value={textColor} onChange={ (e) => setTextColor(e.target.value) } />
+                <input type='color' value={textColor} onChange={ (e) => setTextColor(e.target.value) }  placeholder=""/>
+            </div>
+            <div>
+                <label>Change width/height: </label>
+                <input value={boxSize} onChange={ (e) => setBoxSize(e.target.value) }  placeholder=""/>
             </div>
             <input type="submit" value="Add" />
             <div>
